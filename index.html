@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkyAI Vietnam - Giải pháp Trí tuệ Nhân tạo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #0A1F3C;
+            --gradient: linear-gradient(135deg, #6C5CE7 0%, #00C2D4 100%);
+            --background: #F8F9FA;
+            --text-color: #343A40;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            color: var(--text-color);
+        }
+
+        /* Header */
+        header {
+            background: white;
+            padding: 1rem 5%;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--primary-color);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-menu a:hover {
+            color: #6C5CE7;
+        }
+
+        .cta-button {
+            background: var(--gradient);
+            color: white !important;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            transition: transform 0.3s;
+            text-decoration: none !important;
+            display: inline-block;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 80px;
+            padding: 5rem 5%;
+            background: var(--background);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+        }
+
+        .hero-content h1 {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .hero-content p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+
+        .hero-buttons {
+            margin-top: 2rem;
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border-radius: 30px;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            transition: transform 0.3s;
+            text-decoration: none !important;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .btn:hover {
+            transform: translateY(-5px);
+        }
+
+        .btn-primary {
+            background: var(--gradient);
+            color: white;
+        }
+
+        .btn-outline {
+            border: 2px solid #6C5CE7;
+            background: transparent;
+            color: #6C5CE7;
+        }
+
+        .hero-visual {
+            text-align: center;
+        }
+
+        .hero-visual img {
+            max-width: 100%;
+            height: auto;
+        }
+
+
+        /* Value Proposition */
+        .value-section,
+        .benefits-section {
+            /* Thêm .benefits-section vào đây */
+            padding: 4rem 5%;
+            background: white;
+        }
+
+        .value-section h2,
+        .solutions-section h2,
+        .partners-section h2,
+        .about-section h2,
+        .news-section h2,
+        .contact-section h2,
+        .benefits-section h2 {
+            /* Thêm .benefits-section h2 */
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .card-container,
+        .benefits-grid {
+            /* Thêm .benefits-grid vào đây */
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .card,
+        .benefit-item {
+            /* Thêm .benefit-item vào đây */
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+            text-align: center;
+        }
+
+        .card:hover,
+        .benefit-item:hover {
+            /* Thêm .benefit-item:hover */
+            transform: translateY(-10px);
+        }
+
+        .card i,
+        .benefit-item i {
+            /* Thêm .benefit-item i */
+            color: var(--gradient);
+            margin-bottom: 1rem;
+        }
+
+        .card h3,
+        .benefit-item h3 {
+            /* Thêm .benefit-item h3 */
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .card p,
+        .benefit-item p {
+            /* Thêm .benefit-item p */
+            line-height: 1.5;
+        }
+
+        /* Solutions Section */
+        .solutions-section {
+            padding: 4rem 5%;
+            background: var(--background);
+        }
+
+        .solution-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .solution-item {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+            text-align: center;
+        }
+
+        .solution-item:hover {
+            transform: translateY(-10px);
+        }
+
+        .solution-item i {
+            color: var(--gradient);
+            margin-bottom: 1rem;
+            font-size: 2rem;
+        }
+
+        .solution-item h3 {
+            font-size: 1.3rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .solution-item p {
+            line-height: 1.5;
+        }
+
+        /* Benefits Section */
+        .benefits-section {
+            background: var(--background);
+            /* Cùng màu background với section giải pháp để tạo sự liền mạch */
+        }
+
+
+        /* About Section */
+        .about-section {
+            padding: 4rem 5%;
+            background: white;
+            text-align: center;
+        }
+
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .about-content p {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 1rem;
+            /* Giảm margin bottom của paragraph thường */
+        }
+
+        .about-content h3.mission-vision-title {
+            /* Style cho title Sứ mệnh và Tầm nhìn */
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-top: 1.5rem;
+            /* Thêm margin top để tách biệt */
+            margin-bottom: 0.5rem;
+            /* Giảm margin bottom cho title */
+        }
+
+        .about-content blockquote.mission-vision-statement {
+            /* Style cho statement Sứ mệnh và Tầm nhìn */
+            font-size: 1.2rem;
+            line-height: 1.7;
+            font-style: italic;
+            color: var(--text-color);
+            border-left: 3px solid var(--gradient);
+            padding-left: 1.5rem;
+            margin: 1rem 0 2rem;
+            /* Điều chỉnh margin cho blockquote */
+        }
+
+
+        .team-photo {
+            max-width: 100%;
+            height: auto;
+            border-radius: 15px;
+            margin-top: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+
+        /* Partners Section */
+        .partners-section {
+            padding: 4rem 5%;
+            background: var(--background);
+            text-align: center;
+        }
+
+        .partners-section p {
+            max-width: 700px;
+            margin: 1rem auto 2rem;
+            line-height: 1.6;
+        }
+
+        .logo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+            justify-items: center;
+        }
+
+        .logo-grid img {
+            max-width: 100%;
+            height: auto;
+            opacity: 0.7;
+            transition: opacity 0.3s;
+        }
+
+        .logo-grid img:hover {
+            opacity: 1;
+        }
+
+
+        /* News Section */
+        .news-section {
+            padding: 4rem 5%;
+            background: white;
+        }
+
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .news-item {
+            background: var(--background);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .news-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .news-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .news-content {
+            padding: 1.5rem;
+        }
+
+        .news-content h3 {
+            font-size: 1.2rem;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .news-content p {
+            font-size: 1rem;
+            line-height: 1.5;
+            color: var(--text-color);
+        }
+
+        .news-content a {
+            display: inline-block;
+            margin-top: 1rem;
+            color: var(--gradient);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .news-content a:hover {
+            color: #00C2D4;
+        }
+
+
+        /* Contact Section */
+        .contact-section {
+            padding: 4rem 5%;
+            background: var(--background);
+            text-align: center;
+        }
+
+        .contact-section p {
+            max-width: 700px;
+            margin: 1rem auto 2rem;
+            line-height: 1.6;
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            padding: 1rem;
+            border-radius: 10px;
+            border: 1px solid #ced4da;
+            font-size: 1rem;
+            background: white;
+            color: var(--text-color);
+        }
+
+        .contact-form textarea {
+            resize: vertical;
+        }
+
+        .contact-form button {
+            @extend .btn-primary;
+            align-self: flex-start;
+        }
+
+
+        /* Footer */
+        footer {
+            background: var(--primary-color);
+            color: white;
+            padding: 4rem 5%;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+
+        footer h4 {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        footer p,
+        footer a {
+            color: #d3d3d3;
+            text-decoration: none;
+            transition: color 0.3s;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        footer a:hover {
+            color: white;
+        }
+
+        footer .fab {
+            font-size: 1.5rem;
+            margin-right: 1rem;
+            color: #d3d3d3;
+            transition: color 0.3s;
+        }
+
+        footer .fab:hover {
+            color: white;
+        }
+
+        footer input[type="email"] {
+            padding: 0.8rem;
+            border-radius: 5px;
+            border: none;
+            margin-bottom: 1rem;
+            color: var(--text-color);
+        }
+
+        footer button.btn-primary {
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+        }
+
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-visual {
+                order: -1;
+                margin-bottom: 2rem;
+            }
+
+            .card-container,
+            .solution-grid,
+            .benefits-grid {
+                /* Thêm .benefits-grid vào responsive */
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-menu {
+                display: none;
+            }
+        }
+
+        .card {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::after {
+            content: '🎁';
+            position: absolute;
+            right: -15px;
+            top: -15px;
+            font-size: 50px;
+            opacity: 0.1;
+            transform: rotate(15deg);
+        }
+
+        .benefit-item {
+            border: 2px solid var(--tet-gold);
+            background: linear-gradient(45deg, #fff, #fff5f5);
+        }
+
+        .solution-item i {
+            color: var(--tet-red);
+        }
+    </style>
+    <style>
+        /* Tet Animation Effects */
+        @keyframes firework {
+            0% {
+                transform: scale(0);
+                opacity: 1;
+            }
+
+            100% {
+                transform: scale(1);
+                opacity: 0;
+            }
+        }
+
+        @keyframes fall {
+            100% {
+                transform: translateY(106vh) rotate(360deg);
+            }
+        }
+
+        .tet-decor {
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        /* Banner chúc Tết */
+        .new-year-banner {
+            background: linear-gradient(45deg, #c62828, #f9a825);
+            color: white;
+            text-align: center;
+            padding: 8px;
+            font-size: 0.9rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .new-year-banner::before {
+            content: "🎉";
+            position: absolute;
+            left: -30px;
+            animation: slide 8s linear infinite;
+        }
+
+        @keyframes slide {
+            0% {
+                left: -30px;
+            }
+
+            100% {
+                left: 105%;
+            }
+        }
+
+        /* Update màu sắc Tết */
+        :root {
+            --tet-red: #c62828;
+            --tet-gold: #f9a825;
+            --tet-gradient: linear-gradient(135deg, var(--tet-red), var(--tet-gold));
+        }
+
+        /* Cập nhật màu primary */
+        header {
+            background: var(--tet-red);
+        }
+
+        .logo {
+            color: white;
+        }
+
+        .nav-menu a {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        /* Nút CTA Tết theme */
+        .cta-button {
+            background: var(--tet-gradient);
+            box-shadow: 0 4px 15px rgba(198, 40, 40, 0.4);
+        }
+
+        /* Hoa đào rơi */
+        .flower {
+            position: absolute;
+            animation: fall linear forwards;
+            font-size: 24px;
+        }
+
+        .btn-primary {
+            position: relative;
+            overflow: hidden;
+            transition: 0.3s all;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 10px 20px rgba(198, 40, 40, 0.3);
+        }
+
+        .btn-primary::after {
+            content: '🎁';
+            position: absolute;
+            right: 20px;
+            opacity: 0;
+            transition: 0.3s all;
+        }
+
+        .btn-primary:hover::after {
+            opacity: 1;
+            right: 15px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="tet-decor" id="tet-effects"></div>
+    <div class="new-year-banner">
+        🎊 Chúc mừng năm mới 2025 - An khang thịnh vượng - Phát triển cùng AI 🎊
+    </div>
+
+    <script>
+        // Tạo hiệu ứng hoa đào rơi
+        function createFlowers() {
+            const effects = document.getElementById('tet-effects');
+            for (let i = 0; i < 25; i++) {
+                const flower = document.createElement('div');
+                flower.className = 'flower';
+                flower.innerHTML = '🌸';
+                flower.style.left = Math.random() * 100 + 'vw';
+                flower.style.top = -5 + 'vh';
+                flower.style.animationDuration = Math.random() * 5 + 2 + 's';
+                flower.style.animationDelay = Math.random() * 20 + 's';
+                effects.appendChild(flower);
+            }
+        }
+        window.addEventListener('load', createFlowers);
+    </script>
+    <!-- Header -->
+    <header>
+        <nav class="nav-container">
+            <div class="logo">Sky<span style="color: #6C5CE7;">AI</span></div>
+            <div class="nav-menu">
+                <a href="#home">Home</a>
+                <a href="#solutions">Giải pháp</a>
+                <a href="#benefits">Lợi ích</a> <!-- Thêm menu Lợi ích -->
+                <a href="#about">Về chúng tôi</a>
+                <a href="#news">Tin tức</a>
+                <!-- <a href="#partners">Đối tác</a> -->
+                <a href="#contact" class="cta-button">Liên hệ</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero" style="
+    background: url('tet-pattern.png') repeat-x bottom,
+                linear-gradient(150deg, #fff5f5 0%, #fff 100%);
+    position: relative;
+    overflow: hidden;">
+
+        <div class="hero-content">
+            <h1 style="color: var(--tet-red); position: relative;">
+                <span style="font-size: 0.8em; color: var(--tet-gold); display: block; margin-bottom: 10px;">
+                    🧧 Ất Tỵ 2025 🧧
+                </span>
+                Dẫn đầu Kỷ nguyên AI tại Việt Nam
+            </h1>
+            <!-- Giữ nguyên nội dung cũ -->
+        </div>
+
+        <div class="hero-visual">
+            <img src="ai-robot-tet.jpg" alt="AI Robot Tết" style="
+            padding: 20px;
+            background: url('tet-frame.jpg') no-repeat center/contain;">
+        </div>
+    </section>
+
+    <!-- Value Proposition Section -->
+    <section class="value-section">
+        <h2>Tại sao chọn SkyAI?</h2>
+        <div class="card-container">
+            <div class="card">
+                <i class="fas fa-chart-line fa-2x"></i>
+                <h3>Tối ưu hóa Chi phí</h3>
+                <p>Giảm đến 40% chi phí vận hành nhờ tự động hóa quy trình với AI.</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-users fa-2x"></i>
+                <h3>Đội ngũ Chuyên gia</h3>
+                <p>Đội ngũ kỹ sư AI tài năng từ Việt Nam & Nhật Bản, giàu kinh nghiệm và nhiệt huyết.</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-shield-alt fa-2x"></i>
+                <h3>Bảo mật Tuyệt đối</h3>
+                <p>Cam kết bảo mật dữ liệu khách hàng, tuân thủ GDPR & Luật An ninh mạng Việt Nam.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solutions Section -->
+    <section id="solutions" class="solutions-section">
+        <h2>Giải pháp AI của chúng tôi</h2>
+        <div class="solution-grid">
+            <div class="solution-item">
+                <i class="fas fa-robot"></i>
+                <h3>Xử lý ngôn ngữ tự nhiên (NLP)</h3>
+                <p>Chatbot thông minh, phân tích cảm xúc khách hàng, tóm tắt, dẫn chiếu văn bản tự động, dịch máy, ...</p>
+                <!-- <a href="#">Tìm hiểu thêm</a> -->
+            </div>
+            <div class="solution-item">
+                <i class="fas fa-eye"></i>
+                <h3>Thị giác máy tính (Computer Vision)</h3>
+                <p>Nhận diện hình ảnh/video, phân tích dữ liệu trực quan, kiểm soát chất lượng, ...</p>
+                <!-- <a href="#">Tìm hiểu thêm</a> -->
+            </div>
+            <div class="solution-item">
+                <i class="fas fa-chart-bar"></i>
+                <h3>Phân tích dữ liệu & Dự đoán</h3>
+                <p>Dự báo xu hướng, phân tích hành vi khách hàng, tối ưu hóa quy trình dựa trên dữ liệu, ...</p>
+                <!-- <a href="#">Tìm hiểu thêm</a> -->
+            </div>
+            <div class="solution-item">
+                <i class="fas fa-cogs"></i>
+                <h3>Tự động hóa quy trình (RPA)</h3>
+                <p>Tự động hóa tác vụ lặp đi lặp lại, giảm thiểu sai sót, tăng năng suất, ...</p>
+                <!-- <a href="#">Tìm hiểu thêm</a> -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section id="benefits" class="benefits-section">
+        <h2>Lợi ích khi hợp tác với SkyAI</h2>
+        <div class="benefits-grid">
+            <div class="benefit-item">
+                <i class="fas fa-tachometer-alt"></i>
+                <h3>Tăng hiệu suất vượt trội</h3>
+                <p>Nâng cao hiệu suất làm việc, tối ưu hóa quy trình vận hành, giảm thiểu thời gian và công sức.</p>
+            </div>
+            <div class="benefit-item">
+                <i class="fas fa-dollar-sign"></i>
+                <h3>Tiết kiệm chi phí tối đa</h3>
+                <p>Giảm thiểu chi phí nhân công, tối ưu hóa nguồn lực, tiết kiệm ngân sách cho doanh nghiệp.</p>
+            </div>
+            <div class="benefit-item">
+                <i class="fas fa-brain"></i>
+                <h3>Ra quyết định thông minh hơn</h3>
+                <p>Dựa trên dữ liệu chính xác, đưa ra quyết định chiến lược, giảm thiểu rủi ro và tăng cường lợi thế
+                    cạnh tranh.</p>
+            </div>
+            <div class="benefit-item">
+                <i class="fas fa-hand-holding-heart"></i>
+                <h3>Nâng cao trải nghiệm khách hàng</h3>
+                <p>Cá nhân hóa dịch vụ, đáp ứng nhu cầu khách hàng nhanh chóng, tăng cường sự hài lòng và trung thành.
+                </p>
+            </div>
+            <div class="benefit-item">
+                <i class="fas fa-rocket"></i>
+                <h3>Đột phá và dẫn đầu</h3>
+                <p>Ứng dụng công nghệ AI tiên tiến, tạo ra sự khác biệt, dẫn đầu xu hướng và vượt trội so với đối thủ.
+                </p>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- About Section -->
+    <section id="about" class="about-section">
+        <h2>Về SkyAI</h2>
+        <div class="about-content">
+            <p>SkyAI là startup công nghệ tiên phong trong lĩnh vực trí tuệ nhân tạo tại Việt Nam. Với đội ngũ chuyên
+                gia giàu kinh nghiệm và đam mê, chúng tôi mang đến các giải pháp AI đột phá, đem lại lơi ích cho người dân, giúp doanh nghiệp Việt Nam
+                nâng cao năng lực cạnh tranh và tạo ra giá trị bền vững.</p>
+
+            <h3 class="mission-vision-title">Sứ mệnh</h3>
+            <blockquote class="mission-vision-statement">
+                Đem trí tuệ nhân tạo đến mọi người dân, doanh nghiệp Việt, giúp họ phát triển mạnh mẽ trong kỷ nguyên số.
+            </blockquote>
+
+            <h3 class="mission-vision-title">Tầm nhìn</h3>
+            <blockquote class="mission-vision-statement">
+                Trở thành công ty AI hàng đầu Việt Nam, vươn tầm quốc tế.
+            </blockquote>
+
+            <!-- <img src="team-photo.jpg" alt="Đội ngũ AI Viet" class="team-photo"> -->
+            <!-- Thay thế team-photo.jpg bằng ảnh đội ngũ thực tế -->
+        </div>
+    </section>
+
+    <!-- Partners Section -->
+    <!-- <section id="partners" class="partners-section">
+        <h2>Đối tác của chúng tôi</h2>
+        <p>Chúng tôi tự hào được hợp tác với các tổ chức và doanh nghiệp hàng đầu, cùng nhau xây dựng hệ sinh thái AI
+            vững mạnh tại Việt Nam.</p>
+        <div class="logo-grid">
+            
+            <img src="partner1.png" alt="Partner 1">
+            <img src="partner2.png" alt="Partner 2">
+            <img src="partner3.png" alt="Partner 3">
+            <img src="partner4.png" alt="Partner 4">
+            
+        </div>
+    </section> -->
+
+    <!-- News Section -->
+    <section id="news" class="news-section">
+        <h2>Tin tức & Bài viết</h2>
+        <div class="news-grid">
+            <div class="news-item">
+                <!-- <img src="news1.jpg" alt="Tin tức 1"> -->
+                <div class="news-content">
+                    <h3>SkyAI ra mắt giải pháp chatbot thông minh giải đáp về pháp luật</h3>
+                    <p>Giải pháp chatbot mới giúp mọi người có thể tìm hiểu về Pháp luật 24/7, nâng cao kiến thức
+                        và ý thức chấp hành pháp luật.</p>
+                    <a href="https://luat.skyai.vn">Đi đến</a>
+                </div>
+            </div>
+            <div class="news-item">
+                <!-- <img src="news2.jpg" alt="Tin tức 2"> -->
+                <div class="news-content">
+                    <h3>Trợ lý giải đáp pháp luật của SkyAI đạt 1000 người sử dụng</h3>
+                    <p>Giải pháp của SkyAI đạt kết quả ấn tượng trong lĩnh vực pháp luật, được đông đảo người dùng chấp nhận.</p>
+                    <a href="https://luat.skyai.vn/#/qa">Trải nghiệm ngay</a>
+                </div>
+            </div>
+            <!-- Thêm các tin tức khác -->
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <h2>Liên hệ với chúng tôi</h2>
+        <p>Bạn có câu hỏi hoặc muốn tìm hiểu thêm về giải pháp AI của AI Viet? Hãy để lại thông tin liên hệ, chúng tôi
+            sẽ phản hồi trong thời gian sớm nhất.</p>
+        <div class="contact-form">
+            <input type="text" placeholder="Tên của bạn">
+            <input type="email" placeholder="Email của bạn">
+            <textarea placeholder="Tin nhắn của bạn" rows="5"></textarea>
+            <button class="btn btn-primary">Gửi yêu cầu</button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer style="background: var(--tet-red); position: relative;">
+        <div style="position: absolute; top: -50px; left: 0; right: 0; text-align: center;">
+            <!-- <img src="tet-lanterns.jpg" alt="Lồng đèn Tết" style="width: 120px;"> -->
+        </div>
+        <div class="footer-grid">
+            <div>
+                <h4>Liên hệ</h4>
+                <p>Hà Nội: Ngô Gia Tự, Long Biên, Hà Nội</p>
+                <!-- <p>TP.HCM: Lầu 8, Tòa nhà XYZ, 123 Nguyễn Du, Quận 1, TP.HCM</p> -->
+                <p>Email: oximenvn@gmail.com</p>
+                <p>Điện thoại: (0346) 000 562</p>
+            </div>
+            <div>
+                <h4>Liên kết nhanh</h4>
+                <a href="#solutions">Giải pháp</a>
+                <a href="#benefits">Lợi ích</a>
+                <a href="#about">Về chúng tôi</a>
+                <a href="#news">Tin tức</a>
+                <!-- <a href="#partners">Đối tác</a> -->
+                <a href="#">Tuyển dụng</a>
+                <a href="#">FAQs</a>
+                <a href="#">Tài liệu</a>
+            </div>
+            <div>
+                <h4>Mạng xã hội</h4>
+                <a href="#"><i class="fab fa-facebook"></i> Facebook</a>
+                <!-- <a href="#"><i class="fab fa-linkedin"></i> LinkedIn</a> -->
+                <!-- <a href="#"><i class="fab fa-youtube"></i> YouTube</a> -->
+            </div>
+            <div>
+                <h4>Đăng ký nhận tin</h4>
+                <input type="email" placeholder="Nhập email của bạn">
+                <button class="btn btn-primary">Đăng ký</button>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>
