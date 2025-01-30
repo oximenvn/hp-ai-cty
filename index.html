@@ -7,6 +7,7 @@
     <title>SkyAI Vietnam - Giải pháp Trí tuệ Nhân tạo</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <style>
         :root {
             --primary-color: #0A1F3C;
@@ -564,8 +565,7 @@
         .solution-item i {
             color: var(--tet-red);
         }
-    </style>
-    <style>
+
         /* Tet Animation Effects */
         @keyframes firework {
             0% {
@@ -896,14 +896,16 @@
     <!-- Contact Section -->
     <section id="contact" class="contact-section">
         <h2>Liên hệ với chúng tôi</h2>
-        <p>Bạn có câu hỏi hoặc muốn tìm hiểu thêm về giải pháp AI của AI Viet? Hãy để lại thông tin liên hệ, chúng tôi
+        <p>Bạn có câu hỏi hoặc muốn tìm hiểu thêm về giải pháp AI của SkyAI? Hãy để lại thông tin liên hệ, chúng tôi
             sẽ phản hồi trong thời gian sớm nhất.</p>
-        <div class="contact-form">
-            <input type="text" placeholder="Tên của bạn">
-            <input type="email" placeholder="Email của bạn">
-            <textarea placeholder="Tin nhắn của bạn" rows="5"></textarea>
-            <button class="btn btn-primary">Gửi yêu cầu</button>
-        </div>
+        <form id="contact-form">
+            <div class="contact-form">
+                <input type="text" name="name" placeholder="Tên của bạn">
+                <input type="email" name="email" placeholder="Email của bạn">
+                <textarea name="textarea" placeholder="Tin nhắn của bạn" rows="5"></textarea>
+                <button  type="submit" class="btn btn-primary" id="submit-form">Gửi yêu cầu</button>
+            </div>
+        </form>
     </section>
 
     <!-- Footer -->
@@ -914,7 +916,7 @@
         <div class="footer-grid">
             <div>
                 <h4>Liên hệ</h4>
-                <p>Hà Nội: Ngô Gia Tự, Long Biên, Hà Nội</p>
+                <p>Địa chỉ: Ngô Gia Tự, Long Biên, Hà Nội</p>
                 <!-- <p>TP.HCM: Lầu 8, Tòa nhà XYZ, 123 Nguyễn Du, Quận 1, TP.HCM</p> -->
                 <p>Email: oximenvn@gmail.com</p>
                 <p>Điện thoại: (0346) 000 562</p>
@@ -932,17 +934,36 @@
             </div>
             <div>
                 <h4>Mạng xã hội</h4>
-                <a href="#"><i class="fab fa-facebook"></i> Facebook</a>
+                <a href="https://www.facebook.com/luat.skyai"><i class="fab fa-facebook"></i> Facebook</a>
                 <!-- <a href="#"><i class="fab fa-linkedin"></i> LinkedIn</a> -->
                 <!-- <a href="#"><i class="fab fa-youtube"></i> YouTube</a> -->
             </div>
-            <div>
+            <!-- <div>
                 <h4>Đăng ký nhận tin</h4>
                 <input type="email" placeholder="Nhập email của bạn">
                 <button class="btn btn-primary">Đăng ký</button>
-            </div>
+            </div> -->
         </div>
     </footer>
 </body>
+<script>
+    var $form = $('form#contact-form'),
+        url = 'https://script.google.com/macros/s/AKfycbytsKrAS1H_qk3YXs26V_VyHRQQN7H4SpocdhoSYJ7YW4HVBtz6eT5Op3UNVr8cGcri/exec'
 
+    $('#submit-form').on('click', function (e) {
+        e.preventDefault();
+        var jqxhr = $.ajax({
+            url: url,
+            method: "GET",
+            dataType: "json",
+            data: $form.serialize(),
+            success: function (rooms) {
+                // do something
+                console.log("success");
+                //reload
+                location.reload();
+            }
+        });
+    })
+</script>
 </html>
